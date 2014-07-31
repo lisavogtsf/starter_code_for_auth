@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+  <title>Blog Auth | Index</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Welcome to this community blog!</h1>
+
+
+<!-- consider getting moment library for dates -->
+  <% posts.forEach(function(indivPosts){ %>
+   <article> <a href="blogs/<%=indivPosts.authorId%>/<%=indivPosts.id%>"> <%= indivPosts.content %><small>...post# <%= indivPosts.id %>....<%= indivPosts.createdAt %></small>  </a></article> 
+  <% }) %>
+  
+  <ul>
+    <li><a href="blog/new"> Add a new post</a></li>
+    <li><strike><a href="">Add new Blogger</a></strike></li>
+    <li>Other Link</li>
+  </ul>
+
+</body>
+</html>

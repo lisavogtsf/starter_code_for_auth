@@ -23,7 +23,23 @@ module.exports = function (sequelize, DataTypes){
         associate: function(db){
           User.hasMany(db.post);
         }
+      },
+      {
+        encrypt: function(password, salt){
+          var hash = bcrypt.hashSync(password, salt);
+          return hash;
+        }
+      },
+      {
+        comparePass:
+      },
+      {
+        createNewUser:
+      },
+      {
+        authorize:
       }
+
     } //close classMethods outer 
 
   ); // close define user

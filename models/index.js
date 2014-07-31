@@ -1,8 +1,8 @@
-var fs        = require('fs')
-  , path      = require('path')
+var fs        = require('fs') //?
+  , path      = require('path') //?
   , Sequelize = require('sequelize')
   , lodash    = require('lodash')
-  , env       = process.env.NODE_ENV || 'development'
+  , env       = process.env.NODE_ENV || 'development' //?
   , config    = require(__dirname + '/../config/config.json')[env]
   , sequelize = new Sequelize(config.database, config.username, config.password, config)
   , db        = {}
@@ -22,6 +22,24 @@ Object.keys(db).forEach(function(modelName) {
     db[modelName].associate(db)
   }
 })
+
+
+// // test findOrCreate user
+// db.user.findOrCreate({username: "lisavogtsf"}, {password: "password"})
+//   .success(function(user, created){
+//     console.log(user);
+//   })
+
+// // test findOrCreate post
+// db.post.findOrCreate({title: "Ta da"}, {body: "So much to say"}, {userid: 1})
+//   .success(function(post, created){
+//     console.log(post);
+//   })
+
+
+
+
+
 
 module.exports = lodash.extend({
   sequelize: sequelize,

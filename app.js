@@ -2,8 +2,10 @@
 
 var express = require('express'),
   db = require('./models/index.js'),
+  sequelize = require('sequelize'),
   bodyParser = require('body-parser'),
   methodOvrride = require('method-override'),
+  bcrypt = require('bcrypt'),
   app = express();
 
 app.set('view engine', 'ejs');
@@ -11,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(methodOvrride());
 app.use(bodyParser.urlencoded());
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/public'));
 
 // logging
 app.use(function(req, res, next){
@@ -19,8 +21,14 @@ app.use(function(req, res, next){
   next()
 });
 
+app.get('/', function (req,res) {
+  res.redirect('/users');
+});
+
 app.get('/users', function (req,res) {
-//
+  db.post.findAll().success(function(posts){
+    res.render('index', {posts: posts});
+  })
 });
 
 app.get('/users/:id', function (req,res) {
